@@ -1,22 +1,36 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Root} from "native-base";
+import AppNavigator from "./src/navigation/AppNavigator";
 
 export default class App extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            fontsAreLoaded: false,
+            authenticated: false
+        }
+    }
     async componentWillMount() {
         await Expo.Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
         });
+        this.setState({fontsAreLoaded: true});
     }
 
     render() {
+
+        if (!this.state.fontsAreLoaded) {
+            return <View><Text>Loading</Text></View>;
+        }
+
         return (
-            <View style={styles.container}>
-                <Text>Open up App.js to start working on your app!</Text>
-                <Text>Changes you make will automatically reload.</Text>
-                <Text>Shake your phone to open the developer menu.</Text>
-            </View>
+            <Root>
+                <AppNavigator />
+            </Root>
         );
     }
 }
