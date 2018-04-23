@@ -1,53 +1,15 @@
 import React from "react";
 import {TabNavigator} from 'react-navigation';
-import HomeScreen from "../screens/HomeScreen";
+import OverviewScreen from "../screens/OverviewScreen";
+import MedicineScreen from "../screens/MedicineScreen";
 import {Button, Footer, FooterTab, Icon, Text} from "native-base";
-
-const routes = [
-    {
-        "name": "test",
-        "icon": "test"
-    }
-];
-
-class FooterTabs extends React.Component {
-
-    render() {
-        return (
-            <Container>
-                <Header/>
-                <Content/>
-                <Footer>
-                    <FooterTab>
-                        <Button vertical
-                                onPress={() => this.props.navigation.navigate(data)}>>
-                            <Icon name="apps"/>
-                            <Text>Apps</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="camera"/>
-                            <Text>Camera</Text>
-                        </Button>
-                        <Button vertical active>
-                            <Icon active name="navigate"/>
-                            <Text>Navigate</Text>
-                        </Button>
-                        <Button vertical>
-                            <Icon name="person"/>
-                            <Text>Contact</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-            </Container>
-        );
-    }
-}
 
 const FooterTabNavigator = TabNavigator(
     {
-        Home: {screen: props => <HomeScreen {...props}/>},
+        Overview: {screen: props => <OverviewScreen {...props}/>},
+        Medicine: {screen: props => <MedicineScreen {...props}/>}
     }, {
-        initialRouteName: "Home",
+        initialRouteName: "Overview",
         //contentComponent: props => <FooterTabs {...props} />
         tabBarPosition: "bottom",
         tabBarComponent: props => {
@@ -57,18 +19,18 @@ const FooterTabNavigator = TabNavigator(
                         <Button
                             vertical
                             active={props.navigationState.index === 0}
-                            onPress={() => props.navigation.navigate("Home")}
+                            onPress={() => props.navigation.navigate("Overview")}
                         >
                             <Icon name="bowtie"/>
-                            <Text>Home</Text>
+                            <Text>Overview</Text>
                         </Button>
                         <Button
                             vertical
                             active={props.navigationState.index === 1}
-                            onPress={() => props.navigation.navigate("JadeChat")}
+                            onPress={() => props.navigation.navigate("Medicine")}
                         >
                             <Icon name="briefcase"/>
-                            <Text>Nine</Text>
+                            <Text>Medicine</Text>
                         </Button>
                         <Button
                             vertical
