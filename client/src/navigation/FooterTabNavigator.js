@@ -3,11 +3,13 @@ import {TabNavigator} from 'react-navigation';
 import OverviewScreen from "../screens/OverviewScreen";
 import MedicineScreen from "../screens/MedicineScreen";
 import {Button, Footer, FooterTab, Icon, Text} from "native-base";
+import ScheduleScreen from "../screens/ScheduleScreen";
 
 const FooterTabNavigator = TabNavigator(
     {
         Overview: {screen: props => <OverviewScreen {...props}/>},
-        Medicine: {screen: props => <MedicineScreen {...props}/>}
+        Medicine: {screen: props => <MedicineScreen {...props}/>},
+        Schedule: {screen: props => <ScheduleScreen {...props}/>}
     }, {
         initialRouteName: "Overview",
         //contentComponent: props => <FooterTabs {...props} />
@@ -35,10 +37,10 @@ const FooterTabNavigator = TabNavigator(
                         <Button
                             vertical
                             active={props.navigationState.index === 2}
-                            onPress={() => props.navigation.navigate("NineChat")}
+                            onPress={() => props.navigation.navigate("Schedule")}
                         >
-                            <Icon name="headset"/>
-                            <Text>Jade</Text>
+                            <Icon name="calendar"/>
+                            <Text>Schedule</Text>
                         </Button>
                     </FooterTab>
                 </Footer>
