@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from "native-base";
+import {Button, Container, Content, Text, View} from "native-base";
 
 export default class MedicineScreen extends React.Component {
 
@@ -7,11 +7,21 @@ export default class MedicineScreen extends React.Component {
         super(props);
     }
 
+    onAddPrescription = (e) => {
+        this.props.navigation.navigate("MedicineAdd", {});
+    };
+
     render() {
         return (
-            <View>
-                <Text> My Medicine </Text>
-            </View>
+            <Container>
+                <Content>
+                    <View>
+                        <Button onPress={this.onAddPrescription}>
+                            <Text>Add Prescription</Text>
+                        </Button>
+                    </View>
+                </Content>
+            </Container>
         )
     }
 }

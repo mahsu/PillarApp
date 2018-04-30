@@ -1,14 +1,22 @@
 import React from "react";
-import {TabNavigator} from 'react-navigation';
+import {TabNavigator, StackNavigator} from 'react-navigation';
+import {Button, Footer, FooterTab, Icon, Text} from "native-base";
 import OverviewScreen from "../screens/OverviewScreen";
 import MedicineScreen from "../screens/MedicineScreen";
-import {Button, Footer, FooterTab, Icon, Text} from "native-base";
+import AddMedicineScreen from "../screens/AddMedicineScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
+
+const MedicineNavigator =  StackNavigator(
+    {
+        MedicineSummary: {screen: props => <MedicineScreen {...props}/>},
+        MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>}
+    }
+);
 
 const FooterTabNavigator = TabNavigator(
     {
         Overview: {screen: props => <OverviewScreen {...props}/>},
-        Medicine: {screen: props => <MedicineScreen {...props}/>},
+        Medicine: {screen: MedicineNavigator},
         Schedule: {screen: props => <ScheduleScreen {...props}/>}
     }, {
         initialRouteName: "Overview",
@@ -46,6 +54,7 @@ const FooterTabNavigator = TabNavigator(
                 </Footer>
             );
         }
-    });
+    }
+);
 
 export default FooterTabNavigator;
