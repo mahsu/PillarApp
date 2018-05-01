@@ -20,7 +20,7 @@
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
     "native-base": "^2.4.2",
-    "react": "16.2.0",
+    "react": "^16.3.1",
     "react-native": "^0.52.0",
     "react-native-calendars": "^1.18.2",
     "react-native-camera": "^1.1.2",
