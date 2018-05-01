@@ -7,16 +7,14 @@ export default class MedicineScreen extends React.Component {
         super(props);
     }
 
-    onAddPrescription = (e) => {
-        this.props.navigation.navigate("MedicineAdd", {});
-    };
 
     render() {
+        const navstate = this.props.navigation.state.params;
         return (
             <Container>
                 <Content>
                     <View>
-                        <Button onPress={this.onAddPrescription}>
+                        <Button onPress={this.props.navigtion.navigate("MedicineAdd", navstate)}>
                             <Text>Add Prescription</Text>
                         </Button>
                     </View>

@@ -5,11 +5,13 @@ import OverviewScreen from "../screens/OverviewScreen";
 import MedicineScreen from "../screens/MedicineScreen";
 import AddMedicineScreen from "../screens/AddMedicineScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
+import TakePictureContainer from "../Containers/TakePictureContainer";
 
 const MedicineNavigator =  StackNavigator(
     {
         MedicineSummary: {screen: props => <MedicineScreen {...props}/>},
-        MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>}
+        MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>},
+        TakePicture: {screen: props => <TakePictureContainer {...props}/>}
     }
 );
 
