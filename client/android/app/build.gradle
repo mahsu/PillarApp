@@ -136,6 +136,7 @@ android {
 }
 
 dependencies {
+    api project(':react-native-push-notification')
     api project(':react-native-ble-plx')
     api project(':react-native-camera')
     api fileTree(dir: "libs", include: ["*.jar"])

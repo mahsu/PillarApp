@@ -19,9 +19,10 @@ export default class AddMedicineScreen extends React.Component {
         }
     };
 
-    async addMedicine = (formdata) => {
+    addMedicine = async (formdata) => {
         this.addMedicineHandler(true);
     };
+
     render() {
         return (
             <Container>
