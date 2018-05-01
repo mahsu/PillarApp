@@ -19,6 +19,10 @@ export default class AddMedicineScreen extends React.Component {
         }
     };
 
+    onPicture = (data) => {
+        console.log(data);
+    }
+
     addMedicine = async (formdata) => {
         this.addMedicineHandler(true);
     };
@@ -31,7 +35,7 @@ export default class AddMedicineScreen extends React.Component {
                         <Row><Col>
                             <Item>
                                 <Label>Picture of Pill</Label>
-                                <Button light onPress={() => {this.props.navigation.navigate("TakePicture")}}><Icon name="ios-camera"/></Button>
+                                <Button light onPress={() => {this.props.navigation.navigate("TakePicture",{onPictureParsed: this.onPicture})}}><Icon name="ios-camera"/></Button>
                             </Item>
 
                             <Item fixedLabel>

@@ -14,6 +14,7 @@ import { RNCamera } from 'react-native-camera';
 export default class BasicCamera extends Component {
 
     constructor(props) {
+        console.log("dsfsdfs");
         super(props);
     }
 
@@ -22,7 +23,8 @@ export default class BasicCamera extends Component {
     };
 
     pictureHandler = (data) => {
-        if (typeof this.props.onBarCodeRead === 'function') {
+        console.log(data);
+        if (typeof this.props.onPictureTaken === 'function') {
             this.props.onPictureTaken(data);
         }
     };
@@ -36,7 +38,7 @@ export default class BasicCamera extends Component {
                     }}
                     style = {styles.preview}
                     type={RNCamera.Constants.Type.back}
-                    flashMode={RNCamera.Constants.FlashMode.on}
+                    flashMode={RNCamera.Constants.FlashMode.auto}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera'}
                 />
@@ -56,6 +58,7 @@ export default class BasicCamera extends Component {
         if (this.camera) {
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options);
+            console.log("camera!");
             console.log(data);
             this.pictureHandler(data);
         }

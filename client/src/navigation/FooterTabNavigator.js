@@ -12,7 +12,7 @@ const MedicineNavigator =  StackNavigator(
         MedicineSummary: {screen: props=> <MedicineScreen {...props}/>},
         MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>},
         TakePicture: {screen: props => <TakePictureContainer {...props}/>}
-    }
+    },
 );
 
 const FooterTabNavigator = TabNavigator(
