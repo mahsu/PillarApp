@@ -9,7 +9,7 @@ import TakePictureContainer from "../Containers/TakePictureContainer";
 
 const MedicineNavigator =  StackNavigator(
     {
-        MedicineSummary: {screen: props => <MedicineScreen {...props}/>},
+        MedicineSummary: {screen: props=> <MedicineScreen {...props}/>},
         MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>},
         TakePicture: {screen: props => <TakePictureContainer {...props}/>}
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Col, Container, Content, Form, Item, Label, Row, Text, View} from "native-base";
+import {Button, Col, Container, Content, Form, Icon, Input, Item, Label, Row, Text, View} from "native-base";
 
 export default class AddMedicineScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({

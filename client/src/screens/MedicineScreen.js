@@ -14,7 +14,7 @@ export default class MedicineScreen extends React.Component {
             <Container>
                 <Content>
                     <View>
-                        <Button onPress={this.props.navigtion.navigate("MedicineAdd", navstate)}>
+                        <Button onPress={() => {this.props.navigation.navigate("MedicineAdd", navstate)}}>
                             <Text>Add Prescription</Text>
                         </Button>
                     </View>
