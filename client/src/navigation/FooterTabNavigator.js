@@ -7,11 +7,17 @@ import AddMedicineScreen from "../screens/AddMedicineScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import TakePictureContainer from "../Containers/TakePictureContainer";
 
-const MedicineNavigator =  StackNavigator(
+const MedicineNavigator = StackNavigator(
     {
-        MedicineSummary: {screen: props=> <MedicineScreen {...props}/>},
+        MedicineSummary: {screen: props => <MedicineScreen {...props}/>},
         MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>},
-        TakePicture: {screen: props => <TakePictureContainer {...props}/>}
+        TakePicture: {
+            screen: props => <TakePictureContainer {...props}/>,
+            navigationOptions: ({navigation}) => ({
+                title: 'Take a Picture of Your Pill',
+                tabBarVisible: false,
+            })
+        }
     },
 );
 
