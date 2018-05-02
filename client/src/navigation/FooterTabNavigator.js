@@ -6,7 +6,7 @@ import MedicineScreen from "../screens/MedicineScreen";
 import AddMedicineScreen from "../screens/AddMedicineScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import TakePictureContainer from "../Containers/TakePictureContainer";
-import BarCodeScannerContainer from "../Containers/BarCodeScannerContainer";
+import BarCodeScannerContainer from "../screens/BarCodeScannerScreen";
 
 const MedicineNavigator = StackNavigator(
     {
