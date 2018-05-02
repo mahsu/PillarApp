@@ -12,7 +12,6 @@ export default class HomeScreen extends React.Component {
         return (
 
             <Container>
-                <Header/>
                 <Content>
                     <View style={styles.container}>
                         <Text>Overview Content</Text>
@@ -38,6 +37,9 @@ export default class HomeScreen extends React.Component {
                             </Grid>
                             </Body>
                         </CardItem>
+                    </Card>
+                    <Card>
+
                     </Card>
                 </Content>
             </Container>

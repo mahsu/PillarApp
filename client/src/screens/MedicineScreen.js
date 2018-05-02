@@ -2,6 +2,9 @@ import React from 'react';
 import {Button, Container, Content, Text, View} from "native-base";
 
 export default class MedicineScreen extends React.Component {
+    static navigationOptions = {
+        header: null
+    }
 
     constructor(props) {
         super(props);

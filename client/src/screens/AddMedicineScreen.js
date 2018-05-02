@@ -21,7 +21,12 @@ export default class AddMedicineScreen extends React.Component {
 
     onPicture = (data) => {
         console.log(data);
-    }
+    };
+
+    onBarCode = ({bounds, type, data, target}) => {
+        console.log(data);
+        alert(data);
+    };
 
     addMedicine = async (formdata) => {
         this.addMedicineHandler(true);
@@ -33,6 +38,10 @@ export default class AddMedicineScreen extends React.Component {
                 <Content>
                     <Form>
                         <Row><Col>
+                            <Item>
+                                <Label>Scan Prescription Barcode</Label>
+                                <Button light onPress={() => {this.props.navigation.navigate("BarCodeScanner",{onBarCodeParsed: this.onBarCode})}}><Icon name="ios-barcode-outline"/></Button>
+                            </Item>
                             <Item>
                                 <Label>Picture of Pill</Label>
                                 <Button light onPress={() => {this.props.navigation.navigate("TakePicture",{onPictureParsed: this.onPicture})}}><Icon name="ios-camera"/></Button>
