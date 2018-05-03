@@ -71,6 +71,12 @@ export default class AddMedicineScreen extends React.Component {
         }
     };
 
+    onScanCancelled = (cancelled) => {
+        this.setState({
+            screenState: AddMedicineScreen.stateEnum.ADD_CHOICE
+        })
+    };
+
     onPicture = (data) => {
         console.log(data);
     };
@@ -93,13 +99,13 @@ export default class AddMedicineScreen extends React.Component {
                     <Button onPress={() => {
                         this.setState({screenState: AddMedicineScreen.stateEnum.INPUT_INFO})
                     }}>
-                        <Icon name="ios-plus"/>
+                        <Icon name="ios-add"/>
                         <Text>Manually Enter Prescription</Text>
                     </Button>
                 </View>
             )
         } else if (this.state.screenState === AddMedicineScreen.stateEnum.SCAN_BARCODE) {
-            return (<AddFromPharmacyContainer onRxData={this.onRxData}/>)
+            return (<AddFromPharmacyContainer navigation={this.props.navigation} onRxData={this.onRxData}/>)
         } else {
             return (
                 <Container>
@@ -174,7 +180,7 @@ export default class AddMedicineScreen extends React.Component {
                                         onPress={() => {
                                             this.addMedicineHandler()
                                         }}
-                                        disabled={() => this.state.isVerified}>
+                                        disabled={this.state.isVerified}>
                                     <Text>Submit</Text>
                                 </Button>
                             </Col></Row>

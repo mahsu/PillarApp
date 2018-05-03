@@ -10,7 +10,13 @@ import BarCodeScannerContainer from "../screens/BarCodeScannerScreen";
 
 const MedicineNavigator = StackNavigator(
     {
-        MedicineSummary: {screen: props => <MedicineScreen {...props}/>},
+        MedicineSummary: {
+            screen: props => <MedicineScreen {...props}/>,
+            navigationOptions: ({navigation}) => ({
+                headerMode: 'none',
+                header: null
+            })
+        },
         MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>},
         TakePicture: {
             screen: props => <TakePictureContainer {...props}/>,
@@ -56,7 +62,7 @@ const FooterTabNavigator = TabNavigator(
                             onPress={() => props.navigation.navigate("Medicine")}
                         >
                             <Icon name="briefcase"/>
-                            <Text>Medicine</Text>
+                            <Text>Prescriptions</Text>
                         </Button>
                         <Button
                             vertical

@@ -1,5 +1,8 @@
 import React from 'react';
-import {Button, Container, Content, Text, View} from "native-base";
+import {Body, Button, Card, CardItem, Col, Container, Content, Row, Text, View} from "native-base";
+import PaddedContainer from "../components/visual/PaddedContainer";
+import {StyleSheet} from "react-native";
+import MainTitle from "../components/visual/MainTitle";
 
 export default class MedicineScreen extends React.Component {
 
@@ -13,29 +16,59 @@ export default class MedicineScreen extends React.Component {
             schedule: "",
             instructions: ""
         }
-    ]
+    ];
 
     static navigationOptions = {
         header: null
-    }
+    };
 
     constructor(props) {
         super(props);
+        this.state = {
+            medicineList: []
+        }
     }
 
 
     render() {
         const navstate = this.props.navigation.state.params;
         return (
-            <Container>
+            <PaddedContainer>
                 <Content>
-                    <View>
-                        <Button onPress={() => {this.props.navigation.navigate("MedicineAdd", navstate)}}>
+                    <Row>
+                        <MainTitle>Prescriptions</MainTitle>
+                    </Row>
+                    <Row>
+                        <Col>
+                            {(!this.state.medicineList || this.state.medicineList.length === 0) ? (
+                                <Card>
+                                    <CardItem>
+                                        <Body>
+                                        <Text>No prescriptions being tracked. Add one by
+                                            pressing below!</Text>
+                                        </Body>
+                                    </CardItem>
+                                </Card>) : <View/>}
+                        </Col>
+                    </Row>
+                    <Row style={{paddingTop: 20}}>
+                        <Button
+                            style={styles.AddPrescriptionButton}
+                            onPress={() => {
+                                this.props.navigation.navigate("MedicineAdd", navstate)
+                            }}>
                             <Text>Add Prescription</Text>
                         </Button>
-                    </View>
+                    </Row>
                 </Content>
-            </Container>
+            </PaddedContainer>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    AddPrescriptionButton: {
+        flex: 1,
+        justifyContent: 'center'
+    }
+});
