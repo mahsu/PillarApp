@@ -3,9 +3,9 @@ import {
     Body, Button, CheckBox, Col, Container, Content, Form, Icon, Input, Item, Label, Row, Text,
     View
 } from "native-base";
-import AddFromPharmacyContainer from "../Containers/AddFromPharmacyContainer";
+import AddFromPharmacyContainer from "../containers/AddFromPharmacyContainer";
 
-var testMedication = {
+let testMedication = {
     name: "Test Medication",
     rxnum: "1234567890",
     pill_b64: "",
