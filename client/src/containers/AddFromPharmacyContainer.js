@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button, Col, Form, Icon, Input, Item, Label, Picker, Row, Text, View} from "native-base";
+import PharmacyPicker from "../components/PharmacyPicker";
 
 
 export default class AddFromPharmacyContainer extends React.Component {
@@ -35,6 +36,12 @@ export default class AddFromPharmacyContainer extends React.Component {
         }
     };
 
+    pharmacyPickedHandler = (picked) => {
+        this.setState({
+            pharmacy: picked
+        })
+    };
+
     render() {
         if (this.state.barcode != "") {
             return (
@@ -56,21 +63,7 @@ export default class AddFromPharmacyContainer extends React.Component {
 
                         <Item fixedLabel>
                             <Label>Pharmacy</Label>
-                            <Picker
-                                iosHeader="Select Your Pharmacy"
-                                mode="dropdown"
-                                iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                placeholder="Select Your Pharmacy"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                style={{ width: undefined }}
-                                selectedValue={this.state.pharmacy}
-                                onValueChange={(str) => {this.setState({pharmacy: str})}}
-                            >
-                                <Picker.Item label="Empire State Pharmacy" value="Empire State Pharmacy" />
-                                <Picker.Item label="Garden State Pharmacy" value="Garden State Pharmacy" />
-                                <Picker.Item label="Sunshine State Pharmacy" value="Sunshine State Pharmacy" />
-                            </Picker>
+                            <PharmacyPicker onPharmacyPicked={this.pharmacyPickedHandler}></PharmacyPicker>
                         </Item>
                         <Item>
                             <Button block primary onPress={this.confirmRxData}>

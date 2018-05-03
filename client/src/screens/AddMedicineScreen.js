@@ -1,9 +1,12 @@
 import React from 'react';
 import {
-    Body, Button, CheckBox, Col, Container, Content, Form, Icon, Input, Item, Label, Row, Text,
+    Body, Button, CheckBox, Col, Container, Content, Form, Icon, Input, Item, Label, ListItem, Row, Text,
     View
 } from "native-base";
 import AddFromPharmacyContainer from "../containers/AddFromPharmacyContainer";
+import PaddedContainer from "../components/visual/PaddedContainer";
+import {StyleSheet} from "react-native";
+import PharmacyPicker from "../components/PharmacyPicker";
 
 let testMedication = {
     name: "Test Medication",
@@ -60,6 +63,16 @@ export default class AddMedicineScreen extends React.Component {
                 ...result
             },
         });
+    };
+
+    pharmacyPickedHandler = (pharmacy) => {
+        console.log("pharmacy picked!");
+        this.setState({
+            formdata: {
+                ...this.formdata,
+                pharmacy
+            }
+        })
     };
 
     addMedicineHandler = (response) => {
@@ -130,25 +143,30 @@ export default class AddMedicineScreen extends React.Component {
             return (<AddFromPharmacyContainer navigation={this.props.navigation} onRxData={this.onRxData}/>)
         } else {
             return (
-                <Container>
+                <PaddedContainer>
                     <Content>
-                        {this.state.isPrepopulated ?
-                            <Text>Your prescription information was prepopulated from the scanned barcode.
+                        {this.state.isPrepopulated
+                            ? <Text style={styles.instructions}>Your prescription information was prepopulated from the
+                                scanned barcode.
                                 Please double check to make sure all the information is correct. If there are issues,
                                 fix them and
-                                immediately contact your pharmacy.</Text> : <View/>}
+                                immediately contact your pharmacy.</Text>
+                            : <Text style={styles.instructions}>Please enter your prescription information exactly as
+                                shown on the label.</Text>}
                         <Form>
                             <Row><Col>
 
                                 <Item>
                                     <Label>Picture of Pill</Label>
-                                    <Button light onPress={() => {
+                                    <Button light
+                                            style={styles.iconButton}
+                                            onPress={() => {
                                         this.props.navigation.navigate("TakePicture", {onPictureParsed: this.onPicture})
                                     }}><Icon name="ios-camera"/></Button>
                                 </Item>
 
 
-                                <Item fixedLabel>
+                                <Item floatingLabel>
                                     <Label>Name of Medication</Label>
                                     <Input
                                         value={this.state.formdata.name}
@@ -159,10 +177,10 @@ export default class AddMedicineScreen extends React.Component {
                                             }
                                         })}/>
                                 </Item>
-                                <Item fixedLabel>
+                                <Item floatingLabel>
                                     <Label>Rx #</Label>
                                     <Input
-                                        value={this.state.rxnum}
+                                        value={this.state.formdata.rxnum}
                                         onChange={(val) => this.setState({
                                             formdata: {
                                                 ...this.state.formdata,
@@ -170,46 +188,60 @@ export default class AddMedicineScreen extends React.Component {
                                             }
                                         })}/>
                                 </Item>
-                                <Item fixedLabel>
-                                    <Label>Pharmacy</Label>
-                                    <Input
-                                        value={this.state.pharmacy}
-                                        onChange={(val) => this.setState({
-                                            formdata: {
-                                                ...this.state.formdata,
-                                                pharmacy: val
-                                            }
-                                        })}/>
-                                </Item>
 
                                 <Item fixedLabel>
+                                    <Label style={{flex: 0}}>Pharmacy</Label>
+                                    <PharmacyPicker onPharmacyPicked={this.pharmacyPickedHandler}/>
+                                </Item>
+
+
+                                <Item floatingLabel>
                                     <Label>Daily Frequency</Label>
                                     <Input value="1/2/3"/>
                                 </Item>
 
-                                <Item>
+                                <ListItem style={styles.checkbox}>
                                     <CheckBox
-                                        checked={false}
+                                        checked={this.state.isVerified}
+                                        color='black'
                                         onPress={() => {
                                             this.setState({isVerified: !this.state.isVerified})
                                         }}/>
                                     <Body>
-                                    <Text>I have verified that the information above is correct.</Text>
+                                    <Text>All the information above is correct.</Text>
                                     </Body>
-                                </Item>
+                                </ListItem>
 
                                 <Button block primary
+                                        style={styles.submit}
                                         onPress={() => {
                                             this.addMedicineHandler()
                                         }}
-                                        disabled={this.state.isVerified}>
+                                        disabled={!this.state.isVerified}>
                                     <Text>Submit</Text>
                                 </Button>
                             </Col></Row>
                         </Form>
                     </Content>
-                </Container>
+                </PaddedContainer>
             )
         }
     }
 }
+
+const styles = StyleSheet.create({
+    iconButton: {
+        marginLeft: 10
+    },
+    instructions: {
+        marginLeft: 15,
+        marginTop: 2,
+        marginBottom: 15,
+    },
+    checkbox: {
+        marginTop: 20
+    },
+    submit: {
+        marginTop: 30,
+    }
+});
