@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import PropTypes from 'prop-types';
-import BarCodeScanner from "../components/BarCodeScanner";
+import BarCodeScanner from "../../components/BarCodeScanner";
 
 export default class BarCodeScannerContainer extends React.Component {
 

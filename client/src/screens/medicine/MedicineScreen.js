@@ -1,9 +1,9 @@
 import React from 'react';
 import {Body, Button, Card, CardItem, Col, Container, Content, Row, Text, View} from "native-base";
-import PaddedContainer from "../components/visual/PaddedContainer";
+import PaddedContainer from "../../components/visual/PaddedContainer";
 import {StyleSheet} from "react-native";
-import MainTitle from "../components/visual/MainTitle";
-import PrescriptionCard from "../components/PrescriptionCard";
+import MainTitle from "../../components/visual/MainTitle";
+import PrescriptionCard from "../../components/PrescriptionCard";
 
 const medicineList = [
     {

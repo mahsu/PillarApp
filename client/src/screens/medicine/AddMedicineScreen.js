@@ -3,10 +3,10 @@ import {
     Body, Button, CheckBox, Col, Container, Content, Form, Icon, Input, Item, Label, ListItem, Row, Text,
     View
 } from "native-base";
-import AddFromPharmacyContainer from "../containers/AddFromPharmacyContainer";
-import PaddedContainer from "../components/visual/PaddedContainer";
+import AddFromPharmacyContainer from "../../containers/AddFromPharmacyContainer";
+import PaddedContainer from "../../components/visual/PaddedContainer";
 import {StyleSheet} from "react-native";
-import PharmacyPicker from "../components/PharmacyPicker";
+import PharmacyPicker from "../../components/PharmacyPicker";
 
 let testMedication = {
     name: "Test Medication",

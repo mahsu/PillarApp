@@ -2,11 +2,11 @@ import React from "react";
 import {TabNavigator, StackNavigator} from 'react-navigation';
 import {Button, Footer, FooterTab, Icon, Text} from "native-base";
 import OverviewScreen from "../screens/OverviewScreen";
-import MedicineScreen from "../screens/MedicineScreen";
-import AddMedicineScreen from "../screens/AddMedicineScreen";
+import MedicineScreen from "../screens/medicine/MedicineScreen";
+import AddMedicineScreen from "../screens/medicine/AddMedicineScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import TakePictureContainer from "../containers/TakePictureContainer";
-import BarCodeScannerContainer from "../screens/BarCodeScannerScreen";
+import BarCodeScannerContainer from "../screens/medicine/BarCodeScannerScreen";
 
 const MedicineNavigator = StackNavigator(
     {
