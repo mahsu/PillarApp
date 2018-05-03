@@ -3,8 +3,10 @@ import {Content, View} from "native-base";
 import {Calendar} from "react-native-calendars";
 import PaddedContainer from "../components/visual/PaddedContainer";
 import MainTitle from "../components/visual/MainTitle";
+import moment from 'moment';
 
 export default class ScheduleScreen extends React.Component {
+
     constructor(props) {
         super(props)
     }
@@ -30,7 +32,7 @@ export default class ScheduleScreen extends React.Component {
                             console.log('selected day', day)
                         }}
                         // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-                        monthFormat={'yyyy MM'}
+                        monthFormat={'MMM yyyy'}
                         // Handler which gets executed when visible month changes in calendar. Default = undefined
                         onMonthChange={(month) => {
                             console.log('month changed', month)

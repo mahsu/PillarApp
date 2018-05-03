@@ -12,7 +12,10 @@ let testMedication = {
     name: "Test Medication",
     rxnum: "1234567890",
     pill_b64: "",
-    schedule: "",
+    schedule: {
+        num: "", //number of pills
+        every: "" //hours
+    },
     instructions: ""
 };
 
@@ -36,7 +39,10 @@ export default class AddMedicineScreen extends React.Component {
                 name: "",
                 pharmacy: "",
                 barcode: "",
-                schedule: "",
+                schedule: {
+                    num: "",
+                    every: ""
+                },
                 instructions: ""
             },
             isPrepopulated: false,
@@ -69,19 +75,10 @@ export default class AddMedicineScreen extends React.Component {
         console.log("pharmacy picked!");
         this.setState({
             formdata: {
-                ...this.formdata,
+                ...this.state.formdata,
                 pharmacy
             }
         })
-    };
-
-    addMedicineHandler = (response) => {
-        if (typeof this.props.navigation.state.params.onMedicineAdd === 'function') {
-            this.props.navigation.state.params.onMedicineAdd(response);
-            this.props.navigation.goBack();
-        } else {
-            alert("onmedicineadd undefined");
-        }
     };
 
     onScanCancelled = (cancelled) => {
@@ -95,8 +92,17 @@ export default class AddMedicineScreen extends React.Component {
     };
 
 
-    addMedicine = async (formdata) => {
-        await this.addMedicineHandler(true);
+    addMedicineHandler = async () => {
+        let formdata = this.state.formdata;
+        formdata.schedule.num = parseInt(formdata.schedule.num);
+        formdata.schedule.every = parseInt(formdata.schedule.num);
+
+        if (typeof this.props.navigation.state.params.onMedicineAdd === 'function') {
+            this.props.navigation.state.params.onMedicineAdd(response);
+            this.props.navigation.goBack();
+        } else {
+            alert("onmedicineadd undefined");
+        }
     };
 
     render() {
@@ -166,8 +172,8 @@ export default class AddMedicineScreen extends React.Component {
                                     <Button light
                                             style={styles.iconButton}
                                             onPress={() => {
-                                        this.props.navigation.navigate("TakePicture", {onPictureParsed: this.onPicture})
-                                    }}><Icon name="ios-camera"/></Button>
+                                                this.props.navigation.navigate("TakePicture", {onPictureParsed: this.onPicture})
+                                            }}><Icon name="ios-camera"/></Button>
                                 </Item>
 
 
@@ -175,10 +181,10 @@ export default class AddMedicineScreen extends React.Component {
                                     <Label>Name of Medication</Label>
                                     <Input
                                         value={this.state.formdata.name}
-                                        onChange={(val) => this.setState({
+                                        onChange={(evt) => this.setState({
                                             formdata: {
                                                 ...this.state.formdata,
-                                                name: val
+                                                name: evt.nativeEvent.text
                                             }
                                         })}/>
                                 </Item>
@@ -186,10 +192,10 @@ export default class AddMedicineScreen extends React.Component {
                                     <Label>Rx #</Label>
                                     <Input
                                         value={this.state.formdata.rxnum}
-                                        onChange={(val) => this.setState({
+                                        onChange={(evt) => this.setState({
                                             formdata: {
                                                 ...this.state.formdata,
-                                                rxnum: val
+                                                rxnum: evt.nativeEvent.text
                                             }
                                         })}/>
                                 </Item>
@@ -200,9 +206,39 @@ export default class AddMedicineScreen extends React.Component {
                                 </Item>
 
 
-                                <Item floatingLabel>
-                                    <Label>Daily Frequency</Label>
-                                    <Input value="1/2/3"/>
+                                <Item fixedLabel>
+                                    <Input
+                                        keyboardType="numeric"
+                                        maxLength={1}
+                                        placeholder="0"
+                                        value={this.state.formdata.schedule.num}
+                                        onChange={(evt) => this.setState({
+                                        formdata: {
+                                            ...this.state.formdata,
+                                            schedule: {
+                                                ...this.state.formdata.schedule,
+                                                num: evt.nativeEvent.text
+                                            }
+                                        }
+                                    })}
+                                    />
+                                    <Label style={{flex: 0}}>pill(s) every </Label>
+                                    <Input
+                                        keyboardType="numeric"
+                                        maxLength={2}
+                                        placeholder="24"
+                                        value={this.state.formdata.schedule.every.toString()}
+                                        onChange={(evt) => this.setState({
+                                        formdata: {
+                                            ...this.state.formdata,
+                                            schedule: {
+                                                ...this.state.formdata.schedule,
+                                                every: evt.nativeEvent.text
+                                            }
+                                        }
+                                    })}
+                                    />
+                                    <Label style={{flex: 0}}>hour(s)</Label>
                                 </Item>
 
                                 <ListItem style={styles.checkbox}>

@@ -12,7 +12,10 @@ const medicineList = [
         rxnum: "",
         barcode: "",
         pill_b64: "",
-        schedule: "",
+        schedule: {
+            num: 4,
+            every: 6 //hours
+        },
         instructions: ""
     }
 ];
