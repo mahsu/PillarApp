@@ -13,7 +13,7 @@ export default class PaddedContainer extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 55,
+        paddingTop: 30,
         paddingLeft: 20,
         paddingRight: 20
     }

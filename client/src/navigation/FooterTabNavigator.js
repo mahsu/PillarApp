@@ -17,7 +17,13 @@ const MedicineNavigator = StackNavigator(
                 header: null
             })
         },
-        MedicineAdd: {screen: props => <AddMedicineScreen {...props}/>},
+        MedicineAdd: {
+            screen: props => <AddMedicineScreen {...props}/>,
+            navigationOptions: ({navigation}) => ({
+                title: 'Add a New Prescription',
+                tabBarVisible: false,
+            }),
+        },
         TakePicture: {
             screen: props => <TakePictureContainer {...props}/>,
             navigationOptions: ({navigation}) => ({

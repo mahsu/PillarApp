@@ -52,7 +52,14 @@ export default class HomeScreen extends React.Component {
                         </CardItem>
                     </Card>
                     <Card>
-
+                        <CardItem header>
+                            <Text>My Pillar Portable</Text>
+                        </CardItem>
+                        <CardItem>
+                            <Body>
+                            <Text>Status: Connected</Text>
+                            </Body>
+                        </CardItem>
                     </Card>
                 </Content>
             </PaddedContainer>

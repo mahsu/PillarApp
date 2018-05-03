@@ -51,7 +51,7 @@ export default class MedicineScreen extends React.Component {
                                 </Card>) : <View/>}
                         </Col>
                     </Row>
-                    <Row style={{paddingTop: 20}}>
+                    <Row style={{paddingTop: 30}}>
                         <Button
                             style={styles.AddPrescriptionButton}
                             onPress={() => {

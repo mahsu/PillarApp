@@ -89,20 +89,42 @@ export default class AddMedicineScreen extends React.Component {
     render() {
         if (this.state.screenState === AddMedicineScreen.stateEnum.ADD_CHOICE) {
             return (
-                <View>
-                    <Button onPress={() => {
-                        this.setState({screenState: AddMedicineScreen.stateEnum.SCAN_BARCODE})
+                <Container style={{}}>
+                    <Row style={{
+                        alignItems: 'center',
+                        flexDirection: 'column'
                     }}>
-                        <Icon name="ios-barcode-outline"/>
-                        <Text>Scan Prescription Barcode</Text>
-                    </Button>
-                    <Button onPress={() => {
-                        this.setState({screenState: AddMedicineScreen.stateEnum.INPUT_INFO})
-                    }}>
-                        <Icon name="ios-add"/>
-                        <Text>Manually Enter Prescription</Text>
-                    </Button>
-                </View>
+                        <Col style={{
+                            justifyContent: 'center',
+                            marginLeft: 'auto',
+                            marginRight: 'auto'
+                        }}>
+                            <Button
+                                style={{
+                                    width: 300,
+                                    marginBottom: 10,
+                                }}
+                                onPress={() => {
+
+                                    this.setState({screenState: AddMedicineScreen.stateEnum.SCAN_BARCODE})
+                                }}>
+                                <Icon name="ios-barcode-outline"/>
+                                <Text>Scan Prescription Barcode</Text>
+                            </Button>
+                            <Button
+                                style={{
+                                    width: 300,
+                                    marginTop: 10
+                                }}
+                                onPress={() => {
+                                    this.setState({screenState: AddMedicineScreen.stateEnum.INPUT_INFO})
+                                }}>
+                                <Icon name="ios-add"/>
+                                <Text>Manually Enter Prescription</Text>
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
             )
         } else if (this.state.screenState === AddMedicineScreen.stateEnum.SCAN_BARCODE) {
             return (<AddFromPharmacyContainer navigation={this.props.navigation} onRxData={this.onRxData}/>)
