@@ -5,10 +5,22 @@ import PaddedContainer from "../components/visual/PaddedContainer";
 import MainTitle from "../components/visual/MainTitle";
 import moment from 'moment';
 
+const initialMarked = {
+    '2018-05-01': {marked: true},
+    '2018-05-02': {marked: true, },
+    '2018-05-04': {marked: true,},
+    '2018-04-30': {marked: true},
+    '2018-04-29': {disabled: true,}
+};
+
 export default class ScheduleScreen extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            selected: '2018-05-04',
+            markedDates: {...initialMarked}
+        }
     }
 
     render() {
@@ -25,8 +37,27 @@ export default class ScheduleScreen extends React.Component {
                         maxDate={'2020-05-30'}
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={(day) => {
+                            let selected = day.dateString;
+                            this.setState({
+                                selected,
+                                markedDates: {
+                                    ...this.state.markedDates,
+                                    [this.state.selected]: {
+                                        ...this.state.markedDates[this.state.selected],
+                                        disableTouchEvent: false,
+                                        selected: false
+                                    },
+                                    [selected]: {
+                                        ...this.state.markedDates[selected],
+                                        selected: true,
+                                        disableTouchEvent: true
+                                    }
+                                }
+                            });
+                            console.log(day.dateString);
                             console.log('selected day', day)
                         }}
+                        markedDates={this.state.markedDates}
                         // Handler which gets executed on day long press. Default = undefined
                         onDayLongPress={(day) => {
                             console.log('selected day', day)
@@ -38,9 +69,9 @@ export default class ScheduleScreen extends React.Component {
                             console.log('month changed', month)
                         }}
                         // Hide month navigation arrows. Default = false
-                        hideArrows={true}
+                        hideArrows={false}
                         // Replace default arrows with custom ones (direction can be 'left' or 'right')
-                        renderArrow={(direction) => (<Arrow/>)}
+                        //renderArrow={(direction) => (<Arrow/>)}
                         // Do not show days of other months in month page. Default = false
                         hideExtraDays={true}
                         // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
