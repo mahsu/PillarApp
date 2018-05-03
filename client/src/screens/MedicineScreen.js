@@ -3,20 +3,22 @@ import {Body, Button, Card, CardItem, Col, Container, Content, Row, Text, View} 
 import PaddedContainer from "../components/visual/PaddedContainer";
 import {StyleSheet} from "react-native";
 import MainTitle from "../components/visual/MainTitle";
+import PrescriptionCard from "../components/PrescriptionCard";
+
+const medicineList = [
+    {
+        name: "name",
+        pharmacy: "pharmacy",
+        rxnum: "",
+        barcode: "",
+        pill_b64: "",
+        schedule: "",
+        instructions: ""
+    }
+];
 
 export default class MedicineScreen extends React.Component {
 
-    medicineList = [
-        {
-            name: "name",
-            pharmacy: "pharmacy",
-            rxnum: "",
-            barcode: "",
-            pill_b64: "",
-            schedule: "",
-            instructions: ""
-        }
-    ];
 
     static navigationOptions = {
         header: null
@@ -40,7 +42,8 @@ export default class MedicineScreen extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            {(!this.state.medicineList || this.state.medicineList.length === 0) ? (
+                            {(!this.state.medicineList || this.state.medicineList.length === 0)
+                                ? (
                                 <Card>
                                     <CardItem>
                                         <Body>
@@ -48,7 +51,11 @@ export default class MedicineScreen extends React.Component {
                                             pressing below!</Text>
                                         </Body>
                                     </CardItem>
-                                </Card>) : <View/>}
+                                </Card>)
+                                : this.state.medicineList.map((item, index) => {
+                                    return (<PrescriptionCard data={item} />)
+                                })
+                            }
                         </Col>
                     </Row>
                     <Row style={{paddingTop: 30}}>
