@@ -14,7 +14,6 @@ import { RNCamera } from 'react-native-camera';
 export default class BasicCamera extends Component {
 
     constructor(props) {
-        console.log("dsfsdfs");
         super(props);
     }
 
@@ -58,7 +57,6 @@ export default class BasicCamera extends Component {
         if (this.camera) {
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options);
-            console.log("camera!");
             console.log(data);
             this.pictureHandler(data);
         }

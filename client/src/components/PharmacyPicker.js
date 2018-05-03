@@ -38,6 +38,7 @@ export default class PharmacyPicker extends React.Component {
                 <Picker.Item label="Empire State Pharmacy" value="Empire State Pharmacy"/>
                 <Picker.Item label="Garden State Pharmacy" value="Garden State Pharmacy"/>
                 <Picker.Item label="Sunshine State Pharmacy" value="Sunshine State Pharmacy"/>
+                <Picker.Item label="N/A - Over the Counter" value="OTC"/>
             </Picker>
         )
     }

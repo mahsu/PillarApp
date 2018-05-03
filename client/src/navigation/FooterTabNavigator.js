@@ -5,8 +5,8 @@ import OverviewScreen from "../screens/OverviewScreen";
 import MedicineScreen from "../screens/medicine/MedicineScreen";
 import AddMedicineScreen from "../screens/medicine/AddMedicineScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
-import TakePictureContainer from "../containers/TakePictureContainer";
-import BarCodeScannerContainer from "../screens/medicine/BarCodeScannerScreen";
+import TakePictureScreen from "../screens/medicine/TakePictureScreen";
+import BarCodeScannerScreen from "../screens/medicine/BarCodeScannerScreen";
 
 const MedicineNavigator = StackNavigator(
     {
@@ -25,14 +25,14 @@ const MedicineNavigator = StackNavigator(
             }),
         },
         TakePicture: {
-            screen: props => <TakePictureContainer {...props}/>,
+            screen: props => <TakePictureScreen {...props}/>,
             navigationOptions: ({navigation}) => ({
                 title: 'Take a Picture of Your Pill',
                 tabBarVisible: false,
             })
         },
         BarCodeScanner: {
-            screen: props => <BarCodeScannerContainer {...props}/>,
+            screen: props => <BarCodeScannerScreen {...props}/>,
             navigationOptions: ({navigation}) => ({
                 title: 'Scan a Prescription Barcode',
                 tabBarVisible: false,

@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import PropTypes from 'prop-types';
-import BasicCamera from "../components/BasicCamera";
+import BasicCamera from "../../components/BasicCamera";
 
-export default class TakePictureContainer extends React.Component {
+export default class TakePictureScreen extends React.Component {
 
     static propTypes = {
         onPictureParsed: PropTypes.func
