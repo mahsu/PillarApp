@@ -10,13 +10,13 @@ import PharmacyPicker from "../../components/PharmacyPicker";
 
 let testMedication = {
     name: "Test Medication",
-    rxnum: "1234567890",
+    rxnum: "10125763-001",
     pill_b64: "",
     schedule: {
-        num: "", //number of pills
-        every: "" //hours
+        num: "1", //number of pills
+        every: "6" //hours
     },
-    instructions: ""
+    instructions: "Take 1 tablet by mouth every 6 hours"
 };
 
 export default class AddMedicineScreen extends React.Component {

@@ -29,9 +29,41 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "Matt"
-        }
+            name: "Matt",
+            feelingFormVisible: false,
+            formdata: {
+                isHappy: false,
+
+            }
+        };
+
+        this.feelings = [];
     }
+
+    feelingHandler = (isHappy) => {
+        this.setState({
+            formdata: {
+                isHappy: isHappy,
+                notes: '',
+            },
+            feelingFormVisible: true
+        })
+    };
+
+    submitFeelingFormHandler = () => {
+        let formdata = this.state.formdata;
+        formdata.timestamp = new Date();
+        this.feelings.push(formdata);
+
+        this.setState({
+            formdata: {
+                isHappy: false,
+                notes: ''
+            },
+            feelingFormVisible: false,
+
+        })
+    };
 
     render() {
         return (
@@ -60,35 +92,52 @@ export default class HomeScreen extends React.Component {
                             <Body>
                             <Grid>
                                 <Col style={[styles.colGrid, styles.green]}>
-                                    <Button style={styles.emojiButton} transparent={true}>
+                                    <Button
+                                        style={styles.emojiButton}
+                                        transparent={true}
+                                        onPress={() => this.feelingHandler(true)}>
                                         <Icon style={styles.emojiIcon} name="ios-happy-outline"/>
                                     </Button>
                                 </Col>
                                 <Col style={{width: 20}}/>
                                 <Col style={[styles.colGrid, styles.red]}>
-                                    <Button style={styles.emojiButton} transparent={true}>
+                                    <Button
+                                        style={styles.emojiButton}
+                                        transparent={true}
+                                        onPress={() => this.feelingHandler(false)}>
                                         <Icon style={styles.emojiIcon} name="ios-sad-outline"/>
                                     </Button>
                                 </Col>
                             </Grid>
 
-                            <Form style={{
-                                width: "100%"
-                            }}>
-                                <Row><Col>
-                                    <Item floatingLabel>
-                                        <Label>Notes</Label>
-                                        <Input
-                                            value={"test"}
-                                            onChange={(evt) => this.setState({
-                                                formdata: {
-                                                    ...this.state.formdata,
-                                                    name: evt.nativeEvent.text
-                                                }
-                                            })}/>
-                                    </Item>
-                                </Col></Row>
-                            </Form>
+                            {this.state.feelingFormVisible ? (
+                                    < Form style={{
+                                        width: "100%"
+                                    }}>
+                                        <Row><Col>
+                                            <Item floatingLabel>
+                                                <Label>Notes</Label>
+                                                <Input
+                                                    value={this.state.formdata.notes}
+                                                    onChange={(evt) => this.setState({
+                                                        formdata: {
+                                                            ...this.state.formdata,
+                                                            notes: evt.nativeEvent.text
+                                                        }
+                                                    })}/>
+                                            </Item>
+                                            <Button block primary
+                                                    style={styles.submit}
+                                                    onPress={() => {
+                                                        this.submitFeelingFormHandler()
+                                                    }}
+                                                    disabled={false}>
+                                                <Text>Submit</Text>
+                                            </Button>
+                                        </Col></Row>
+                                    </Form>)
+                                : (<View/>)
+                            }
                             </Body>
                         </CardItem>
                     </Card>
@@ -117,6 +166,9 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    submit: {
+        marginTop: 15
+    },
     reminderClock: {
         fontSize: 42
     },
