@@ -1,6 +1,6 @@
 import React from "react"
 import {
-    Body, Button, Card, CardItem, Col, Container, Content, Grid, H1, H3, Header, Icon, Text,
+    Body, Button, Card, CardItem, Col, Container, Content, Grid, H1, H3, Header, Icon, Left, Right, Text,
     View
 } from "native-base";
 import {StyleSheet} from "react-native";
@@ -53,7 +53,14 @@ export default class HomeScreen extends React.Component {
                     </Card>
                     <Card>
                         <CardItem header>
+                            <Left>
                             <Text>My Pillar Portable</Text>
+                            </Left>
+                            <Right>
+                                <Button transparent={true}>
+                                    <Icon name="ios-refresh"/>
+                                </Button>
+                            </Right>
                         </CardItem>
                         <CardItem>
                             <Body>
