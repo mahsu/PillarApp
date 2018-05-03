@@ -51,6 +51,9 @@ export default class BarCodeScanner extends Component {
                         RNCamera.Constants.BarCodeType.itf14
                     ]}
                     onBarCodeRead={this.barCodeHandler}
+                    />
+                <View
+                    style={styles.scanline}
                 />
             </View>
         );
@@ -61,7 +64,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        height: '100%'
+    },
+    scanline: {
+        position: 'absolute',
+        top: '50%',
+        width: '100%',
+        borderBottomColor: 'red',
+        borderBottomWidth: 1,
     },
     preview: {
         flex: 1,
