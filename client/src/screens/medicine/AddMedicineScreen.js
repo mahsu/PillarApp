@@ -92,13 +92,13 @@ export default class AddMedicineScreen extends React.Component {
     };
 
 
-    addMedicineHandler = async () => {
+    addMedicineHandler = () => {
         let formdata = this.state.formdata;
         formdata.schedule.num = parseInt(formdata.schedule.num);
         formdata.schedule.every = parseInt(formdata.schedule.num);
 
         if (typeof this.props.navigation.state.params.onMedicineAdd === 'function') {
-            this.props.navigation.state.params.onMedicineAdd(response);
+            this.props.navigation.state.params.onMedicineAdd(formdata);
             this.props.navigation.goBack();
         } else {
             alert("onmedicineadd undefined");

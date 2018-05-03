@@ -1,6 +1,23 @@
 import React from "react"
 import {
-    Body, Button, Card, CardItem, Col, Container, Content, Grid, H1, H3, Header, Icon, Left, Right, Text,
+    Body,
+    Button,
+    Card,
+    CardItem,
+    Col,
+    Container,
+    Content,
+    Form,
+    Grid,
+    H1,
+    H3,
+    Header,
+    Icon, Input,
+    Item, Label,
+    Left,
+    Right,
+    Row,
+    Text,
     View
 } from "native-base";
 import {StyleSheet} from "react-native";
@@ -26,17 +43,23 @@ export default class HomeScreen extends React.Component {
                             <Text>Welcome back, {this.state.name}.</Text>
                         </CardItem>
                         <CardItem>
-                        <Body><Text>You will be reminded in 3 hours, at 12PM to take your medication.</Text></Body>
+                            <Body>
+                            <H3>Next Reminder in:</H3>
+                            <View style={styles.reminderContainer}>
+                                <Icon style={styles.reminderClock} name="ios-clock-outline"/>
+                                <Text style={styles.reminderText}>3 Hr 24 Min</Text>
+                            </View>
+                            </Body>
                         </CardItem>
                     </Card>
                     <Card>
                         <CardItem header>
-                            <Text>How are you feeling today?</Text>
+                            <Text>How are you feeling right now?</Text>
                         </CardItem>
                         <CardItem>
                             <Body>
                             <Grid>
-                                <Col style={[styles.colGrid,styles.green]}>
+                                <Col style={[styles.colGrid, styles.green]}>
                                     <Button style={styles.emojiButton} transparent={true}>
                                         <Icon style={styles.emojiIcon} name="ios-happy-outline"/>
                                     </Button>
@@ -48,13 +71,31 @@ export default class HomeScreen extends React.Component {
                                     </Button>
                                 </Col>
                             </Grid>
+
+                            <Form style={{
+                                width: "100%"
+                            }}>
+                                <Row><Col>
+                                    <Item floatingLabel>
+                                        <Label>Notes</Label>
+                                        <Input
+                                            value={"test"}
+                                            onChange={(evt) => this.setState({
+                                                formdata: {
+                                                    ...this.state.formdata,
+                                                    name: evt.nativeEvent.text
+                                                }
+                                            })}/>
+                                    </Item>
+                                </Col></Row>
+                            </Form>
                             </Body>
                         </CardItem>
                     </Card>
                     <Card>
                         <CardItem header>
                             <Left>
-                            <Text>My Pillar Portable</Text>
+                                <Text>My Pillar Portable</Text>
                             </Left>
                             <Right>
                                 <Button transparent={true}>
@@ -76,6 +117,20 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    reminderClock: {
+        fontSize: 42
+    },
+    reminderText: {
+        fontSize: 25,
+        paddingLeft: 20
+    },
+    reminderContainer: {
+        paddingTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%'
+    },
     red: {
         backgroundColor: '#c0392b'
     },

@@ -1,5 +1,5 @@
 import React from "react"
-import {Body, Button, Card, CardItem, Icon, Left, Text, Thumbnail} from "native-base";
+import {Body, Button, Card, CardItem, Icon, Left, Right, Text, Thumbnail, View} from "native-base";
 import {Image} from "react-native";
 
 export default class PrescriptionCard extends React.Component {
@@ -13,31 +13,58 @@ export default class PrescriptionCard extends React.Component {
             <Card>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={{uri: 'Image URL'}} />
                         <Body>
-                        <Text>NativeBase</Text>
-                        <Text note>GeekyAnts</Text>
+                        <Text>{this.props.data.name}</Text>
+                        <View style={{
+                            paddingTop: 2,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                        }}>
+                            <Icon
+                                style={{
+                                    fontSize: 16
+                                }}
+                                name="ios-clock-outline"/>
+                            <Text
+                                note style={{
+                                paddingLeft: 5
+                            }}>3 Hr 15 Min</Text>
+                        </View>
                         </Body>
                     </Left>
                 </CardItem>
-                <CardItem cardBody>
-                    <Image source={{uri: 'Image URL'}} style={{height: 200, width: null, flex: 1}}/>
+                {(this.props.data.pill_b64 && this.props.data.pill_b64.length !== 0)
+                    ? (
+                        <CardItem cardBody>
+                            <Image source={{uri: this.props.data.pill_b64}}
+                                   style={{height: 150, width: null, flex: 1}}/>
+                        </CardItem>
+                    )
+                    : (<View/>)
+                }
+                <CardItem bordered>
+                    <Body>
+                    <Text>Instructions: {this.props.data.instructions}</Text>
+                    </Body>
                 </CardItem>
                 <CardItem>
                     <Left>
                         <Button transparent>
-                            <Icon active name="thumbs-up" />
-                            <Text>12 Likes</Text>
+                            <Icon name="ios-alarm"/>
+                            <Text>Snooze</Text>
                         </Button>
                     </Left>
                     <Body>
                     <Button transparent>
-                        <Icon active name="chatbubbles" />
-                        <Text>4 Comments</Text>
+                        <Icon active name="ios-cart"/>
+                        <Text>Reorder</Text>
                     </Button>
                     </Body>
                     <Right>
-                        <Text>11h ago</Text>
+                        <Button transparent>
+                            <Icon name="ios-settings"/>
+                            <Text>Edit</Text>
+                        </Button>
                     </Right>
                 </CardItem>
             </Card>
