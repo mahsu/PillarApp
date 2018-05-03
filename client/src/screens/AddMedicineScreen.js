@@ -140,7 +140,12 @@ export default class AddMedicineScreen extends React.Component {
                 </Container>
             )
         } else if (this.state.screenState === AddMedicineScreen.stateEnum.SCAN_BARCODE) {
-            return (<AddFromPharmacyContainer navigation={this.props.navigation} onRxData={this.onRxData}/>)
+            return (
+                <PaddedContainer>
+                    <Content>
+                        <AddFromPharmacyContainer navigation={this.props.navigation} onRxData={this.onRxData}/>
+                    </Content>
+                </PaddedContainer>)
         } else {
             return (
                 <PaddedContainer>

@@ -11,15 +11,6 @@ export default class BarCodeScannerContainer extends React.Component {
 
     static defaultProps = {};
 
-    onBarCodeParsed = (data) => {
-        if (typeof this.props.navigation.state.params.onBarCodeParsed === 'function') {
-            this.props.navigation.state.params.onBarCodeParsed(data);
-            this.props.navigation.state.params.onBarCodeParsed = null; //prevent duplicate calls
-        } else {
-            console.log("onBarCodeparsed undefined");
-        }
-    };
-
     constructor(props) {
         super(props);
     }
@@ -35,8 +26,16 @@ export default class BarCodeScannerContainer extends React.Component {
     barCodeScanHandler = (data) => {
         if (!this.state.taken) {
             this.setState({taken: true});
-            this.props.navigation.goBack();
-            this.onBarCodeParsed(data);
+            console.log("Navigation handler called");
+
+            if (typeof this.props.navigation.state.params.onBarCodeParsed === 'function') {
+                this.props.navigation.state.params.onBarCodeParsed(data);
+                this.props.navigation.goBack();
+                this.props.navigation.state.params.onBarCodeParsed = null; //prevent duplicate calls
+            } else {
+                console.log("onBarCodeparsed undefined");
+            }
+
         }
     };
 

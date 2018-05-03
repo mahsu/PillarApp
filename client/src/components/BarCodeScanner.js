@@ -25,6 +25,7 @@ export default class BarCodeScanner extends Component {
         console.log(data);
         if (typeof this.props.onBarCodeParsed === 'function') {
             this.props.onBarCodeParsed(data);
+            //this.props.onBarCodeParsed = null; //trigger only once
         }
     };
 
@@ -47,6 +48,8 @@ export default class BarCodeScanner extends Component {
                         RNCamera.Constants.BarCodeType.code93,
                         RNCamera.Constants.BarCodeType.code128,
                         RNCamera.Constants.BarCodeType.upce,
+                        RNCamera.Constants.BarCodeType.ean8,
+                        RNCamera.Constants.BarCodeType.ean13,
                         RNCamera.Constants.BarCodeType.interleaved2of5,
                         RNCamera.Constants.BarCodeType.itf14
                     ]}

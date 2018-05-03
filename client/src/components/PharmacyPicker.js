@@ -1,5 +1,6 @@
 import React from 'react'
 import {Icon, Picker} from "native-base";
+import {Platform} from "react-native";
 
 export default class PharmacyPicker extends React.Component {
 
@@ -28,7 +29,7 @@ export default class PharmacyPicker extends React.Component {
                 placeholder="Select Your Pharmacy"
                 placeholderStyle={{color: "#bfc6ea"}}
                 placeholderIconColor="#007aff"
-                style={{width: undefined}}
+                style={{ width: (Platform.OS === 'ios') ? undefined : '100%' }}
                 selectedValue={this.state.selected}
                 onValueChange={(str) => {
                     this.dropdownSelectedHandler(str)
