@@ -62,7 +62,8 @@ export default class HomeScreen extends React.Component {
             },
             feelingFormVisible: false,
 
-        })
+        });
+        console.log(this.feelings);
     };
 
     render() {

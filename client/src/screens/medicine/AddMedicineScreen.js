@@ -88,6 +88,12 @@ export default class AddMedicineScreen extends React.Component {
     };
 
     onPicture = (data) => {
+        this.setState({
+            formdata: {
+                ...this.state.formdata,
+                pill_b64: data
+            }
+        });
         console.log(data);
     };
 
