@@ -1,17 +1,44 @@
 import React from 'react'
-import {Content, View} from "native-base";
+import {Content, H3, Text, View} from "native-base";
 import {Calendar} from "react-native-calendars";
 import PaddedContainer from "../components/visual/PaddedContainer";
 import MainTitle from "../components/visual/MainTitle";
 import moment from 'moment';
+import FeelingsCard from "../components/FeelingsCard";
 
 const initialMarked = {
     '2018-05-01': {marked: true},
-    '2018-05-02': {marked: true, },
+    '2018-05-02': {marked: true,},
     '2018-05-04': {marked: true,},
     '2018-04-30': {marked: true},
     '2018-04-29': {disabled: true,}
 };
+
+const events = {
+    '2018-05-01': [
+        {
+            time: "9 AM",
+            isHappy: false,
+            notes: "Slight dizziness, needed to lie down."
+        },
+        {
+            time: "3 PM",
+            isHappy: true,
+            notes: "Medication working as expected."
+        },
+        {
+            time: "9 PM",
+            isHappy: true,
+            notes: ""
+        }
+    ]
+};
+
+function sortTimes(times) {
+    return times.sort((a, b) => {
+        return new Date('1970/01/01 ' + a.time) - new Date('1970/01/01 ' + b.time);
+    });
+}
 
 export default class ScheduleScreen extends React.Component {
 
@@ -24,9 +51,11 @@ export default class ScheduleScreen extends React.Component {
     }
 
     render() {
+        let selectedDayEvents = events[this.state.selected];
+        let selectedMoment = moment(this.state.selected).format("MMM D, YYYY");
         return (
             <PaddedContainer>
-                <Content>
+                <Content scrollEnabled={false}>
                     <MainTitle>Schedule</MainTitle>
                     <Calendar
                         // Initially visible month. Default = Date()
@@ -88,6 +117,26 @@ export default class ScheduleScreen extends React.Component {
                         // Handler which gets executed when press arrow icon left. It receive a callback can go next month
                         onPressArrowRight={addMonth => addMonth()}
                     />
+                </Content>
+                <Content>
+                    <View style={{
+                        paddingTop: 15,
+                        paddingLeft: 10
+                    }}>
+                        <H3>{selectedMoment}</H3>
+                        {selectedDayEvents && selectedDayEvents.length > 0
+                            ? <Text style={{paddingTop: 2, paddingBottom: 10}}>Here are your recorded events:</Text>
+                            : <View/>}
+
+                    </View>
+                    {selectedDayEvents
+                        ? (selectedDayEvents.length > 0
+                                ? sortTimes(selectedDayEvents).map((item, index) => {
+                                    return (<FeelingsCard key={index} data={item}/>);
+                                })
+                                : (<Text style={{paddingLeft: 10, paddingTop: 2}}>No events for the selected day.</Text>)
+                        )
+                        : (<Text style={{paddingLeft: 10, paddingTop: 2}}>No events for the selected day</Text>)}
                 </Content>
             </PaddedContainer>
         );
