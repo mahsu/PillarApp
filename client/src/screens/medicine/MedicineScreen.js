@@ -4,7 +4,6 @@ import PaddedContainer from "../../components/visual/PaddedContainer";
 import {StyleSheet} from "react-native";
 import MainTitle from "../../components/visual/MainTitle";
 import PrescriptionCard from "../../components/PrescriptionCard";
-import { ToastAndroid } from "react-native";
 
 const initialMedicineList = [
     {

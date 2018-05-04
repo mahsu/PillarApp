@@ -9,6 +9,7 @@ import FeelingsCard from "../components/FeelingsCard";
 const initialMarked = {
     '2018-05-01': {marked: true},
     '2018-05-02': {marked: true,},
+    '2018-05-03': {marked: true,},
     '2018-05-04': {marked: true,},
     '2018-04-30': {marked: true},
     '2018-04-29': {disabled: true,}
@@ -25,6 +26,62 @@ const events = {
             time: "3 PM",
             isHappy: true,
             notes: "Medication working as expected."
+        },
+        {
+            time: "9 PM",
+            isHappy: true,
+            notes: ""
+        }
+    ],
+    '2018-05-02': [
+        {
+            time: "9 AM",
+            isHappy: true,
+            notes: ""
+        },
+        {
+            time: "3 PM",
+            isHappy: true,
+            notes: ""
+        },
+        {
+            time: "3:30 PM",
+            isHappy: false,
+            notes: "Slight dizziness"
+        },
+        {
+            time: "9 PM",
+            isHappy: false,
+            notes: "Stomach Discomfort"
+        }
+    ],
+    '2018-05-03': [
+        {
+            time: "9 AM",
+            isHappy: false,
+            notes: "Dizziness that went away with breakfast"
+        },
+        {
+            time: "3 PM",
+            isHappy: true,
+            notes: ""
+        },
+        {
+            time: "9 PM",
+            isHappy: true,
+            notes: ""
+        }
+    ],
+    '2018-05-04': [
+        {
+            time: "9 AM",
+            isHappy: true,
+            notes: ""
+        },
+        {
+            time: "3 PM",
+            isHappy: false,
+            notes: "Drowsiness"
         },
         {
             time: "9 PM",
