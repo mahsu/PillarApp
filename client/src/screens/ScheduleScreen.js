@@ -112,7 +112,7 @@ export default class ScheduleScreen extends React.Component {
         let selectedMoment = moment(this.state.selected).format("MMM D, YYYY");
         return (
             <PaddedContainer>
-                <Content scrollEnabled={false}>
+                <Content scrollEnabled={false} style={{paddingBottom: 10}}>
                     <MainTitle>Schedule</MainTitle>
                     <Calendar
                         // Initially visible month. Default = Date()

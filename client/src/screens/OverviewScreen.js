@@ -29,7 +29,7 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "Matt",
+            name: "Jeffrey",
             feelingFormVisible: false,
             formdata: {
                 isHappy: false,

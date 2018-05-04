@@ -9,14 +9,14 @@ import {StyleSheet} from "react-native";
 import PharmacyPicker from "../../components/PharmacyPicker";
 
 let testMedication = {
-    name: "Test Medication",
+    name: "Raltegravir 400mg",
     rxnum: "10125763-001",
     pill_b64: "",
     schedule: {
         num: "1", //number of pills
-        every: "6" //hours
+        every: "12" //hours
     },
-    instructions: "Take 1 tablet by mouth every 6 hours"
+    instructions: "Take 1 tablet by mouth every 12 hours"
 };
 
 export default class AddMedicineScreen extends React.Component {
@@ -43,7 +43,7 @@ export default class AddMedicineScreen extends React.Component {
                     num: "",
                     every: ""
                 },
-                instructions: ""
+                instructions: "Take 1 tablet by mouth every 6 hours"
             },
             isPrepopulated: false,
             isVerified: false
