@@ -1,0 +1,37 @@
+type User  {
+    id: Int
+    email: String
+    company_name: String
+    models: [Model]!
+}
+
+type Model{
+    id: Int
+    name: String
+    description: String!
+    submodels: [Submodel]!
+}
+
+type Submodel{
+    id: Int
+    category: String
+    name: String
+    expression: String
+    param_min: Float
+    param_max: Float
+}
+
+type Query {
+    user: User!
+    models: [Model]!
+    model(id: ID): Model!
+
+}
+
+type Mutation {
+    createModel(name: String, description: String, user: ID): Model
+    deleteModel(id: ID): Boolean
+    createSubmodel(model_id: ID, category: String, name: String, expression: String, param_min: Float, param_max: Float): Submodel
+    updateSubmodel(id: ID, name: String, expression: String, param_min: Float, param_max: Float): Boolean
+    deleteSubmodel(model: ID): Boolean
+}
